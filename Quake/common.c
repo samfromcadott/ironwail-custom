@@ -46,13 +46,13 @@ qboolean		fitzmode;
 static void COM_Path_f (void);
 
 // if a packfile directory differs from this, it is assumed to be hacked
-#define PAK0_COUNT		339	/* id1/pak0.pak - v1.0x */
-#define PAK0_CRC_V100		13900	/* id1/pak0.pak - v1.00 */
-#define PAK0_CRC_V101		62751	/* id1/pak0.pak - v1.01 */
-#define PAK0_CRC_V106		32981	/* id1/pak0.pak - v1.06 */
+#define PAK0_COUNT		339	/* base/pak0.pak - v1.0x */
+#define PAK0_CRC_V100		13900	/* base/pak0.pak - v1.00 */
+#define PAK0_CRC_V101		62751	/* base/pak0.pak - v1.01 */
+#define PAK0_CRC_V106		32981	/* base/pak0.pak - v1.06 */
 #define PAK0_CRC	(PAK0_CRC_V106)
-#define PAK0_COUNT_V091		308	/* id1/pak0.pak - v0.91/0.92, not supported */
-#define PAK0_CRC_V091		28804	/* id1/pak0.pak - v0.91/0.92, not supported */
+#define PAK0_COUNT_V091		308	/* base/pak0.pak - v0.91/0.92, not supported */
+#define PAK0_CRC_V091		28804	/* base/pak0.pak - v0.91/0.92, not supported */
 
 THREAD_LOCAL char	com_token[1024];
 int		com_argc;
@@ -1550,7 +1550,7 @@ typedef struct
 
 #define MAX_FILES_IN_PACK	2048
 
-char	com_gamenames[1024];	//eg: "hipnotic;quoth;warp" ... no id1
+char	com_gamenames[1024];	//eg: "hipnotic;quoth;warp" ... no base
 char	com_gamedir[MAX_OSPATH];
 char	com_basedirs[MAX_BASEDIRS][MAX_OSPATH];
 int		com_numbasedirs;
@@ -2391,7 +2391,7 @@ static void COM_Game_f (void)
 				}
 
 				if (!q_strcasecmp(p, GAMENAME))
-					continue; //don't add id1, its not interesting enough.
+					continue; //don't add base, its not interesting enough.
 
 				if (*paths)
 					q_strlcat(paths, ";", sizeof(paths));
@@ -2534,7 +2534,7 @@ to the new dir
 */
 static void COM_MigrateNightdiveUserFiles (void)
 {
-	const char	*episodes[] = {"id1", "hipnotic", "rogue", "dopa", "mg1"};
+	const char	*episodes[] = {"base", "hipnotic", "rogue", "dopa", "mg1"};
 	const char	*filetypes[] = {"cfg", "txt", "sav", "dem", "png", "jpg"};
 	const char	*game, *ext;
 	char		src[MAX_OSPATH];
@@ -2830,8 +2830,8 @@ void COM_InitFilesystem (void) //johnfitz -- modified based on topaz's tutorial
 	i = COM_CheckParm ("-basegame");
 	if (i)
 	{	//-basegame:
-		// a) replaces all hardcoded dirs (read: alternative to id1)
-		// b) isn't flushed on normal gamedir switches (like id1).
+		// a) replaces all hardcoded dirs (read: alternative to base)
+		// b) isn't flushed on normal gamedir switches (like base).
 		com_modified = true; //shouldn't be relevant when not using id content... but we don't really know.
 		for(;; i = COM_CheckParmNext (i, "-basegame"))
 		{
@@ -2847,7 +2847,7 @@ void COM_InitFilesystem (void) //johnfitz -- modified based on topaz's tutorial
 	}
 	else
 	{
-		// start up with GAMENAME by default (id1)
+		// start up with GAMENAME by default (base)
 		COM_AddGameDirectory (GAMENAME);
 	}
 

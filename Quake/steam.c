@@ -491,7 +491,7 @@ quakeflavor_t ChooseQuakeFlavor (void)
 	return (quakeflavor_t) choice;
 #else
 	// FIXME: Original version can't be played on OS's with case-sensitive file systems
-	// (due to id1 being named "Id1" and pak0.pak "PAK0.PAK")
+	// (due to base being named "base" and pak0.pak "PAK0.PAK")
 	return QUAKE_FLAVOR_REMASTERED;
 #endif
 }

@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 //define	PARANOID			// speed sapping error checking
 
-#define	GAMENAME	"id1"		// directory to look in by default
+#define	GAMENAME	"base"		// directory to look in by default
 
 #ifndef RC_INVOKED // skip the rest of the file when compiling resources
 #include "q_stdinc.h"
@@ -424,4 +424,3 @@ void Host_InvokeOnMainThread (void (*func) (void *param), void *param);
 #endif /* RC_INVOKED */
 
 #endif	/* QUAKEDEFS_H */
-

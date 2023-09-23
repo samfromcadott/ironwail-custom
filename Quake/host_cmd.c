@@ -443,7 +443,7 @@ void ExtraMaps_Init (void)
 	pack_t			*pak;
 	int				i;
 
-	// we don't want to list the maps in id1 pakfiles,
+	// we don't want to list the maps in base pakfiles,
 	// because these are not "add-on" levels
 	q_snprintf (ignorepakdir, sizeof(ignorepakdir), "/%s/", GAMENAME);
 
@@ -543,7 +543,7 @@ static void Host_Maps_f (void)
 
 static const char *const knownmods[][2] =
 {
-	{"id1",			"Quake"},
+	{"base",			"Quake"},
 	{"hipnotic",	"Scourge of Armagon"},
 	{"rogue",		"Dissolution of Eternity"},
 	{"dopa",		"Dimension of the Past"},
@@ -1272,10 +1272,10 @@ void DemoList_Init (void)
 	pack_t		*pak;
 	int		i;
 
-	// we don't want to list the demos in id1 pakfiles,
+	// we don't want to list the demos in base pakfiles,
 	// because these are not "add-on" demos
 	q_snprintf (ignorepakdir, sizeof (ignorepakdir), "/%s/", GAMENAME);
-	
+
 	for (search = com_searchpaths; search; search = search->next)
 	{
 		if (*search->filename) //directory
@@ -1734,11 +1734,11 @@ static void Host_SetPos_f(void)
 	sv_player->v.velocity[0] = 0;
 	sv_player->v.velocity[1] = 0;
 	sv_player->v.velocity[2] = 0;
-	
+
 	sv_player->v.origin[0] = atof(Cmd_Argv(1));
 	sv_player->v.origin[1] = atof(Cmd_Argv(2));
 	sv_player->v.origin[2] = atof(Cmd_Argv(3));
-	
+
 	if (Cmd_Argc() == 7)
 	{
 		sv_player->v.angles[0] = atof(Cmd_Argv(4));
@@ -1746,7 +1746,7 @@ static void Host_SetPos_f(void)
 		sv_player->v.angles[2] = atof(Cmd_Argv(6));
 		sv_player->v.fixangle = 1;
 	}
-	
+
 	SV_LinkEdict (sv_player, false);
 }
 
@@ -2386,7 +2386,7 @@ Host_Loadgame_f
 static void Host_Loadgame_f (void)
 {
 	static char	*start;
-	
+
 	char	name[MAX_OSPATH];
 	char	relname[MAX_OSPATH];
 	char	mapname[MAX_QPATH];
@@ -2406,7 +2406,7 @@ static void Host_Loadgame_f (void)
 		Con_Printf ("load <savename> : load a game\n");
 		return;
 	}
-	
+
 	if (strstr(Cmd_Argv(1), ".."))
 	{
 		Con_Printf ("Relative pathnames are not allowed.\n");
@@ -2441,7 +2441,7 @@ static void Host_Loadgame_f (void)
 // avoid leaking if the previous Host_Loadgame_f failed with a Host_Error
 	if (start != NULL)
 		free (start);
-	
+
 	start = (char *) COM_LoadMallocFile_TextMode_OSPath(name, NULL);
 	if (start == NULL)
 	{
@@ -3645,4 +3645,3 @@ void Host_InitCommands (void)
 	Cmd_AddCommand ("viewnext", Host_Viewnext_f);
 	Cmd_AddCommand ("viewprev", Host_Viewprev_f);
 }
-

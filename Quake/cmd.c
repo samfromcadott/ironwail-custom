@@ -274,7 +274,7 @@ void Cmd_StuffCmds_f (void)
 	Cbuf_InsertText (cmds);
 }
 
-/* id1/pak0.pak from 2021 re-release doesn't have a default.cfg
+/* base/pak0.pak from 2021 re-release doesn't have a default.cfg
  * embedding Quakespasm's customized default.cfg for that...  */
 #include "default_cfg.h"
 

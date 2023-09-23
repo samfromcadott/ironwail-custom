@@ -299,7 +299,7 @@ void BGM_PlayCDtrack (byte track, qboolean looping)
  * with the highest path_id is most likely from our own gamedir
  * itself. This way, if a mod has track02 as a *.mp3 file, which
  * is below *.ogg in the music_handler order, the mp3 will still
- * have priority over track02.ogg from, say, id1.
+ * have priority over track02.ogg from, say, base.
  */
 	char tmp[MAX_QPATH];
 	const char *ext;
